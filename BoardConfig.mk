@@ -111,3 +111,20 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
+TW_INCLUDE_FASTBOOTD := true
+
+# Security patch level
+VENDOR_SECURITY_PATCH := 2021-08-01
+
+# Kernel module loading
+TW_LOAD_VENDOR_MODULES := "focaltech-FT5x46.ko incrementalfs.ko kheaders.ko trace_irqsoff_bytedancy.ko trace_noschedule_bytedancy.ko trace_runqlat_bytedancy.ko"
+# For building with minimal manifest
+ALLOW_MISSING_DEPENDENCIES := true
+
+# Debugging
+TWRP_EVENT_LOGGING := true
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+BOARD_USES_METADATA_PARTITION := true
