@@ -1,12 +1,12 @@
 
 # <mount_point>      <fstype>  <device>        <device2>                  <flags>
-/system                ext4      /dev/block/mapper/system                       flags=display="System";backup=1
+/system                ext4      /dev/block/mapper/system                       flags=display="System";backup=1;flashimg=1
 /system_image          emmc      /dev/block/mapper/system                       flags=display="System image";backup=1;flashimg=1
-/vendor                ext4      /dev/block/mapper/vendor                       flags=display="Vendor";backup=1
+/vendor                ext4      /dev/block/mapper/vendor                       flags=display="Vendor";backup=1;flashimg=1
 /vendor_image          emmc      /dev/block/mapper/vendor                       flags=display="Vendor image";backup=1;flashimg=1
-/product               ext4      /dev/block/mapper/product                      flags=display="Product";backup=1
+/product               ext4      /dev/block/mapper/product                      flags=display="Product";backup=1;flashimg=1
 /product_image         emmc      /dev/block/mapper/product                      flags=display="Product image";backup=1;flashimg=1
-#/system_ext           ext4      /dev/block/mapper/system_ext                   flags=display="System_ext";backup=1
+#/system_ext           ext4      /dev/block/mapper/system_ext                   flags=display="System_ext";backup=1;flashimg=1
 #/system_ext_image     emmc      /dev/block/mapper/system_ext                   flags=display="System_ext image";backup=1;flashimg=1
 
 /spl                   emmc     /dev/block/mmcblk0boot0                  flags=display=spl;slotselect;backup=1
@@ -39,10 +39,10 @@
 /persist               emmc     /dev/block/by-name/persist               flags=display=persist;backup=1;flashimg=1
 /logo                  emmc     /dev/block/by-name/logo                  flags=display=logo;backup=1;flashimg=1
 /fbootlogo             emmc     /dev/block/by-name/fbootlogo             flags=display=fbootlogo;backup=1;flashimg=1
-/system                ext4     /system                                  flags=display=system;logical;slotselect;backup=1
-/system_ext            ext4     /system_ext                              flags=display=system_ext;logical;slotselect;backup=1
-/vendor                ext4     /vendor                                  flags=display=vendor;logical;slotselect;backup=1
-/product               ext4     /product                                 flags=display=product;logical;slotselect;backup=1
+/system                ext4     /system                                  flags=display=system;logical;slotselect;backup=1;flashimg=1
+/system_ext            ext4     /system_ext                              flags=display=system_ext;logical;slotselect;backup=1;flashimg=1
+/vendor                ext4     /vendor                                  flags=display=vendor;logical;slotselect;backup=1;flashimg=1
+/product               ext4     /product                                 flags=display=product;logical;slotselect;backup=1;flashimg=1
 /metadata              ext4     /dev/block/by-name/metadata              flags=display=metadata;backup=1
 /socko                 ext4     /dev/block/by-name/socko                 flags=display=socko;slotselect;backup=1;flashimg=1
 /odmko                 ext4     /dev/block/by-name/odmko                 flags=display=odmko;slotselect;backup=1;flashimg=1
