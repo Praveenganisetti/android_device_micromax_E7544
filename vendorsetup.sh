@@ -8,3 +8,6 @@
 add_lunch_combo omni_E7544-user
 add_lunch_combo omni_E7544-userdebug
 add_lunch_combo omni_E7544-eng
+
+# Allow missing dependencies
+export ALLOW_MISSING_DEPENDENCIES=true
