@@ -15,7 +15,7 @@ Shipped Android Version | 11.0
 Storage | 32/64 eMMC 5.1
 Battery | Non-removable Li-Po 5000mAh
 Display | 16.6cm (6.52) Resolution HD+ 1600*720 Mini Drop PPI 269,Aspect Ratio (20:9) Contrast Ratio 200:1
-Display type | TNTSC
+Display Type | TNTSC
 Display Brightness | 400 nits
 BODY Dimensions | 164.3 x 75.7 x 8.6 mm (6.47 x 2.98 x 0.34 in)
 Weight | 190 g (6.70 oz)
