@@ -30,7 +30,7 @@ Sensors | Fingerprint (rear-mounted), accelerometer, proximity
 SAR | 0.85 W/kg (head) / 1.13 W/kg (body) 
 ## Device picture
 
-![Lenovo Z6 Pro](https://www.smartphonesbd.com/images/phones/micromax-in-2b.jpg)
+![](https://www.smartphonesbd.com/images/phones/micromax-in-2b.jpg)
 
 ```
 #
