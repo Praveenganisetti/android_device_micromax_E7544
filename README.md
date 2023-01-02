@@ -21,7 +21,7 @@ BODY Dimensions | 164.3 x 75.7 x 8.6 mm (6.47 x 2.98 x 0.34 in)
 Weight | 190 g (6.70 oz)
 SIM | Dual SIM (Nano-SIM, dual stand-by)
 Build | Glass front, plastic back, plastic frame
-Dual Camera | 13 MP, f/1.8, 27mm (wide), 1/3.0", 1.12µm, PDAF 2 MP, f/2.4, (depth)
+Dual Camera (Back) | 13 MP, f/1.8, 27mm (wide), 1/3.0", 1.12µm, PDAF 2 MP, f/2.4, (depth)
 Features | LED flash, HDR, panorama
 SELFIE CAMERA Single | 5 MP, f/2.2 
 Features | HDR
