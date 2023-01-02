@@ -1,7 +1,7 @@
 # Android device tree for Micromax IN_2b (E7544)
 
 The Micromax IN2B (Model_E7544) is a entry-level smartphone from Micromax.
-Micromax announced this device on 2021 July 30 and released in 2021 August 06
+Micromax announced this device on July 30 2021 and released in August 06 2021
 
 ## Device specifications
 
