@@ -87,6 +87,24 @@ BOARD_SUPER_PARTITION_GROUPS := micromax_dynamic_partitions
 BOARD_MICROMAX_DYNAMIC_PARTITIONS_PARTITION_LIST := system system_ext vendor product
 BOARD_MICROMAX_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
+# UserIMG
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+
+# Partitions (listed in the file) to be wiped under recovery.
+TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/root/system/etc/recovery.wipe
+
+# Use mke2fs to create ext4 images
+TARGET_USES_MKE2FS := true
+
+# Decryption
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+BOARD_USES_METADATA_PARTITION := true
+BOARD_USES_QCOM_FBE_DECRYPTION := true
+TW_USE_FSCRYPT_POLICY := 1
+
 # Platform
 TARGET_BOARD_PLATFORM := ums512
 
