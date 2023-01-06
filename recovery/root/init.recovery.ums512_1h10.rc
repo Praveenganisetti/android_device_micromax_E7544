@@ -1,5 +1,6 @@
 #add for board init.rc for recovery mode
 import /init.recovery.common.rc
+import /init.recovery.qcom_decrypt.fbe.rc
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
@@ -19,6 +20,7 @@ on property:ro.crypto.state=unsupported
     stop hwservicemanager
 
 on property:ro.crypto.state=unencrypted
+    start prepdecrypt
     stop sbinqseecomd
     stop keymaster-4-0
     stop gatekeeper-1-0
@@ -39,4 +41,10 @@ on property:ro.crypto.fs_crypto_blkdev=*
     stop servicemanager
     stop hwservicemanager    
   
+service prepdecrypt /system/bin/prepdecrypt.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
   
