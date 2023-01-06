@@ -118,6 +118,10 @@ TW_USE_FSCRYPT_POLICY := 1
 # Platform
 TARGET_BOARD_PLATFORM := ums512
 
+# TARGET_NO_BOOTLOADER tells TWRP, that the phone doesn't have a fastboot mode. If you set this
+# flag to true, TWRP will hide the "Reboot to Bootloader/Fastboot" Button
+TARGET_NO_BOOTLOADER := false
+
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
