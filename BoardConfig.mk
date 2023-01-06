@@ -22,6 +22,9 @@ AB_OTA_PARTITIONS += \
     system_ext \
     vendor \
     product
+
+# Recovery
+TARGET_NO_RECOVERY := true
 BOARD_USES_RECOVERY_AS_BOOT := true
 
 # Architecture
@@ -140,4 +143,13 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+
+# Metadata
 BOARD_USES_METADATA_PARTITION := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+
+# Decryption
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+BOARD_USES_QCOM_FBE_DECRYPTION := true
+TW_USE_FSCRYPT_POLICY := 1
