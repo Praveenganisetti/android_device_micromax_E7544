@@ -30,6 +30,7 @@ AB_OTA_PARTITIONS += \
     system_ext \
     vendor \
     product
+endif
 
 # Recovery
 TARGET_NO_RECOVERY := true
