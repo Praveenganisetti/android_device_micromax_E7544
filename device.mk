@@ -10,6 +10,7 @@ LOCAL_PATH := device/micromax/E7544
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # A/B
+TARGET_IS_VAB := true
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
