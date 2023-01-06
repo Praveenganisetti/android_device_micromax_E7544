@@ -10,7 +10,15 @@ DEVICE_PATH := device/micromax/E7544
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
+
+# Enable virtual A/B OTA
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+
 # A/B
+ifeq ($(TARGET_IS_VAB),true)
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     vbmeta \
@@ -47,7 +55,6 @@ DEXPREOPT_GENERATE_APEX_IMAGE := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := ums512_1h10
-TARGET_NO_BOOTLOADER := true
 
 # Display
 TARGET_SCREEN_DENSITY := 280
