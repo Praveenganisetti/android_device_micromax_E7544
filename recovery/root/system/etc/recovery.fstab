@@ -38,6 +38,20 @@ vendor /vendor ext4 ro,barrier=1 wait,avb=vbmeta_vendor,logical,first_stage_moun
 product /product ext4 ro,barrier=1 wait,avb=vbmeta,logical,first_stage_mount,slotselect
 /dev/block/by-name/metadata /metadata    ext4 nodev,noatime,nosuid,errors=panic wait,formattable,first_stage_mount,check
 
+system                                                  /system                ext4    ro,barrier=1,discard                                 wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
+system                                                  /system                erofs   ro                                                   wait,slotselect,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
+system_ext                                              /system_ext            ext4    ro,barrier=1,discard                                 wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system_ext                                              /system_ext            erofs   ro                                                   wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+product                                                 /product               ext4    ro,barrier=1,discard                                 wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+product                                                 /product               erofs   ro                                                   wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+vendor                                                  /vendor                ext4    ro,barrier=1,discard                                 wait,slotselect,avb,logical,first_stage_mount
+vendor                                                  /vendor                erofs   ro                                                   wait,slotselect,avb,logical,first_stage_mount
+odm                                                     /odm                   ext4    ro,barrier=1,discard                                 wait,slotselect,avb,logical,first_stage_mount
+odm                                                     /odm                   erofs   ro                                                   wait,slotselect,avb,logical,first_stage_mount
+/dev/block/by-name/metadata                             /metadata              ext4    noatime,nosuid,nodev,discard                         wait,check,formattable,wrappedkey,first_stage_mount
+/dev/block/bootdevice/by-name/misc                      /misc                  emmc    defaults                                             defaults
+
+
 /dev/block/by-name/socko                 /socko              ext4    noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc    wait,check,slotselect
 /dev/block/by-name/odmko                 /odmko              ext4    noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc    wait,check,slotselect
 /dev/block/by-name/userdata              /data               f2fs    noatime,nosuid,nodev,discard,inline_xattr,inline_data latemount,wait,check,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption,reservedsize=128M,checkpoint=fs,formattable

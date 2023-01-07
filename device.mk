@@ -10,6 +10,8 @@ LOCAL_PATH := device/micromax/E7544
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # A/B
+TARGET_IS_VAB := true
+ENABLE_VIRTUAL_AB := true
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/otapreopt_script \
@@ -44,3 +46,9 @@ PRODUCT_PACKAGES += \
     fastbootd \
     android.hardware.fastboot@1.0-impl-mock \
     android.hardware.fastboot@1.0-impl-mock.recovery
+
+
+# QCOM Decryption
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe

@@ -1,25 +1,56 @@
 #add for board init.rc for recovery mode
 import /init.recovery.common.rc
+import /init.recovery.qcom_decrypt.fbe.rc
+
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
 on boot
     start health-hal-2-1
-    insmod /vendor/lib/modules/incrementalfs.ko
-    insmod /vendor/lib/modules/kheaders.ko
-    insmod /vendor/lib/modules/trace_irqsoff_bytedancy.ko
-    insmod /vendor/lib/modules/trace_noschedule_bytedancy.ko
-    insmod /vendor/lib/modules/trace_runqlat_bytedancy.ko                
-    start load_ts_firmware
 
 on post-fs
     start boot-hal-1-1
+    
+on property:ro.crypto.state=unsupported
+    stop sbinqseecomd
+    stop keymaster-4-0
+    stop gatekeeper-1-0
+    stop servicemanager
+    stop hwservicemanager
 
-on property:ro.crypto.type=file
-    setprop ro.crypto.state encrypted
-    setprop twrp.apex.loaded true
+on property:ro.crypto.state=unencrypted
+    start prepdecrypt
+    stop sbinqseecomd
+    stop keymaster-4-0
+    stop gatekeeper-1-0
+    stop servicemanager
+    stop hwservicemanager
 
-service load_ts_firmware /system/bin/load_ts_firmware.sh
-    oneshot
+on property:twrp.decrypt.done=true
+    stop sbinqseecomd
+    stop keymaster-4-0
+    stop gatekeeper-1-0
+    stop servicemanager
+    stop hwservicemanager
+
+on property:ro.crypto.fs_crypto_blkdev=*
+    stop sbinqseecomd
+    stop keymaster-4-0
+    stop gatekeeper-1-0
+    stop servicemanager
+    stop hwservicemanager    
+  
+service prepdecrypt /system/bin/prepdecrypt.sh
     user root
     group root
     disabled
+    oneshot
+    seclabel u:r:recovery:s0
+  
+service mount-dynamic-rw /system/bin/mount-dynamic-rw.sh
+    user root
+    group root
+    disabled
+    oneshot
     seclabel u:r:recovery:s0
