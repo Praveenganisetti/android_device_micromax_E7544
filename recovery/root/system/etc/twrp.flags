@@ -1,0 +1,39 @@
+# Android fstab file.
+# Copyright (©) 2014 to 2023 Team Win LLC.
+# Micromax IN_2b
+
+system          /system                 auto            logical
+vendor          /vendor                 auto            display="Vendor";logical
+product         /product                auto            display="Product";logical
+system_ext      /system_ext             auto            logical
+
+/system		        ext4	/dev/block/mapper/system_a                  wait,avb=vbmeta,logical,first_stage_mount,flags=backup=1;display="System"
+/vendor                ext4    /dev/block/mapper/vendor_a                  wait,avb,logical,first_stage_mount,flags=backup=1;display="Vendor"
+/product		       ext4	/dev/block/mapper/product_a                 wait,avb,logical,first_stage_mount,flags=backup=1;display="Product"
+/system_ext            ext4    /dev/block/mapper/system_ext_a              wait,avb,logical,first_stage_mount,flags=backup=1;display="System_ext"
+
+# <mount_point>      <fstype>  <device>        <device2>                  <flags>
+# Dyanmic Partitions
+/system_image          emmc     /dev/block/mapper/system_a                flags=display="System image";backup=1;flashimg=1
+/vendor_image          emmc     /dev/block/mapper/vendor_a                flags=display="Vendor image";backup=1;flashimg=1
+/product_image         emmc     /dev/block/mapper/product_a               flags=display="Product image";backup=1;flashimg=1
+/system_ext_image      emmc     /dev/block/mapper/system_ext_a            flags=display="System_ext image";backup=1;flashimg=1
+/vbmeta                emmc     /dev/block/by-name/vbmeta                 flags=display=vbmeta;slotselect;backup=1;flashimg=1
+/vbmeta_product        emmc     /dev/block/by-name/vbmeta_product         flags=display=vbmeta_product;slotselect;backup=1
+/vbmeta_system_ext     emmc     /dev/block/by-name/vbmeta_system_ext      flags=display=vbmeta_system_ext;slotselect;backup=1
+/boot                  emmc     /dev/block/by-name/boot_a                 flags=display=boot;slotselect;backup=1;flashimg=1
+/data                  f2fs     /dev/block/by-name/userdata               flags=fileencryption=aes-256-xts:aes-256-cts:v2
+/logo                  emmc     /dev/block/bootdevice/by-name/logo        flags=display=bootlogo;backup=1;flashimg=1
+/metadata              ext4     /dev/block/bootdevice/by-name/metadata    flags=display="Metadata";backup=1;wrappedkey
+# AVB partitions
+/dtbo                  emmc    /dev/block/bootdevice/by-name/dtbo                flags=display="Dtbo";flashimg;backup=1
+/vbmeta                emmc    /dev/block/bootdevice/by-name/vbmeta              flags=display="Vbmeta";flashimg;backup=1
+/vbmeta_system         emmc    /dev/block/bootdevice/by-name/vbmeta_system       flags=display="Vbmeta-System";flashimg;backup=1
+/vbmeta_vendor.        emmc    /dev/block/bootdevice/by-name/vbmeta_vendor       flags=display="Vbmeta-Vendor";flashimg;backup=1
+# Persistent Firmware & Properties
+/persist               ext4    /dev/block/bootdevice/by-name/persist             flags=display="Persist"
+/persist_image         emmc    /dev/block/bootdevice/by-name/persist             flags=display="Persist Image";backup=1;flashimg=1
+# Removable storage
+/external_sd           vfat     /dev/block/mmcblk1p1                             flags=display="external_sd";storage;wipeingui;removable;fsflags="utf8"
+/usb-otg               vfat     /dev/block/sda1                                  flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"
+/storage               f2fs     /data/media/0                                    flags=display="Internal Storage";usermrf;backup=1;fsflags="bind";removable

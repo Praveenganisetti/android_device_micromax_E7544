@@ -1,3 +1,15 @@
+# Core Partitions (Dynamic Partitions, erofs)   
+system                                              /system         erofs       ro                                                                                                               wait,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
+vendor                                              /vendor         erofs       ro                                                                                                               wait,avb,logical,first_stage_mount
+product                                             /product        erofs       ro                                                                                                               wait,logical,first_stage_mount
+system_ext                                          /system_ext     erofs       ro                                                                                                               wait,logical,first_stage_mount
+
+# Core Partitions (Dynamic Partitions, ext4)    
+system                                              /system         ext4        ro                                                                                                               wait,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey
+vendor                                              /vendor         ext4        ro                                                                                                               wait,avb,logical,first_stage_mount
+product                                             /product        ext4        ro                                                                                                               wait,logical,first_stage_mount
+system_ext                                          /system_ext     ext4        ro                                                                                                               wait,logical,first_stage_mount
+
 /dev/block/mmcblk0boot0                                                        /spl                emmc    defaults    slotselect
 /dev/block/mmcblk0boot1                                                        /spl_bk             emmc    defaults    defaults
 /dev/block/by-name/uboot                 /uboot              emmc    defaults    slotselect
@@ -46,8 +58,6 @@ product                                                 /product               e
 product                                                 /product               erofs   ro                                                   wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
 vendor                                                  /vendor                ext4    ro,barrier=1,discard                                 wait,slotselect,avb,logical,first_stage_mount
 vendor                                                  /vendor                erofs   ro                                                   wait,slotselect,avb,logical,first_stage_mount
-odm                                                     /odm                   ext4    ro,barrier=1,discard                                 wait,slotselect,avb,logical,first_stage_mount
-odm                                                     /odm                   erofs   ro                                                   wait,slotselect,avb,logical,first_stage_mount
 /dev/block/by-name/metadata                             /metadata              ext4    noatime,nosuid,nodev,discard                         wait,check,formattable,wrappedkey,first_stage_mount
 /dev/block/bootdevice/by-name/misc                      /misc                  emmc    defaults                                             defaults
 
@@ -57,3 +67,13 @@ odm                                                     /odm                   e
 /dev/block/by-name/userdata              /data               f2fs    noatime,nosuid,nodev,discard,inline_xattr,inline_data latemount,wait,check,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption,reservedsize=128M,checkpoint=fs,formattable
 /dev/block/by-name/prodnv                /mnt/vendor         ext4    noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc     wait,check
 /dev/block/mmcblk1p1                     /storage/sdcard0    vfat    defaults    defaults
+
+#<src>                                               <mnt_point>    <type>  <mnt_flags and options>   <fs_mgr_flags>
+# Userdata partition
+/dev/block/by-name/userdata                          /data               f2fs    noatime,nosuid,nodev,discard,inline_xattr,inline_data latemount,wait,check,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption,reservedsize=128M,checkpoint=fs,formattable
+
+# Need to have this entry in here even though the mount point itself is no longer needed.
+# The update_engine code looks for this entry in order to determine the boot device address
+# and fails if it does not find it.
+/dev/block/bootdevice/by-name/misc                   /misc               emmc    defaults            defaults
+
