@@ -9,5 +9,4 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),E7544)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
-ifneq (,$(filter $(TW_INCLUDE_RESETPROP), true))
 endif
