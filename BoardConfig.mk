@@ -15,7 +15,7 @@ ALLOW_MISSING_DEPENDENCIES := true
 # $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
+# $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
 # A/B
 ifeq ($(TARGET_IS_VAB),true)
