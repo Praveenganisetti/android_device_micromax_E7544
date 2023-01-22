@@ -171,7 +171,26 @@ on boot
     chown system system /sys/class/sprd_sensorhub/sensor_hub/op_download
     chown system system /sys/class/sprd_sensorhub/sensor_hub/mag_cali_flag
     chown system system /sys/class/sprd_sensorhub/sensor_hub/sensorhub
-
+    #HS03 code for P211014-07931 by zhangziyi at 2021/10/18 start
+    chown system system /sys/class/leds/vibrator/state
+    chown system system /sys/class/leds/vibrator/duration
+    chown system system /sys/class/leds/vibrator/activate
+    #HS03 code for P211014-07931 by zhangziyi at 2021/10/18 end
+    #HS03  code for SR-SL6215-01-729 by shibinbin at 2021/09/02 start
+    chown system system /sys/bus/i2c/devices/3-0012/batch
+    chown system system /sys/bus/i2c/devices/3-0012/enable
+    #HS03  code for SR-SL6215-01-729 by shibinbin at 2021/09/02 end
+    #Tab A7 T618 code for SR-AX6189A-01-60 by zhangziyi at 2021/12/23 start
+    chown system system /sys/bus/i2c/devices/1-0012/batch
+    chown system system /sys/bus/i2c/devices/1-0012/enable
+    chown system system /sys/bus/i2c/devices/1-0012/aot_cali
+    chown system system /sys/module/aw9610x/parameters/sar_names
+    #Tab A7 T618 code for SR-AX6189A-01-60 by zhangziyi at 2021/12/23 end
+    #Tab A8 code for SR-AX6300-01-66 by mayuhang at 2021/9/8 start
+    chown system system /sys/class/sar/batch
+    chown system system /sys/class/sar/enable
+    chown system system /sys/class/sar/calibrate
+    #Tab A8 code for SR-AX6300-01-66 by mayuhang at 2021/9/8 end
     chmod 660 /sys/class/sprd_sensorhub/sensor_hub/iio/trigger/current_trigger
     chmod 660 /sys/class/sprd_sensorhub/sensor_hub/batch
     chmod 660 /sys/class/sprd_sensorhub/sensor_hub/logctl
@@ -188,6 +207,31 @@ on boot
     chmod 660 /sys/class/power_supply/battery/charger.0/jeita_control
     chmod 660 /sys/class/power_supply/battery/input_current_limit
     chmod 660 /sys/class/power_supply/battery/constant_charge_current
+    #HS03 code for P211014-07931 by zhangziyi at 2021/10/18 start
+    chmod 664 /sys/class/leds/vibrator/state
+    chmod 664 /sys/class/leds/vibrator/duration
+    chmod 664 /sys/class/leds/vibrator/activate
+    #HS03 code for P211014-07931 by zhangziyi at 2021/10/18 end
+    #HS03  code for SR-SL6215-01-729 by shibinbin at 2021/09/02 start
+    chmod 660 /sys/bus/i2c/devices/3-0012/batch
+    chmod 660 /sys/bus/i2c/devices/3-0012/enable
+    #HS03  code for SR-SL6215-01-729 by shibinbin at 2021/09/02 end
+    #Tab A7 T618 code for SR-AX6189A-01-60 by zhangziyi at 2021/12/23 start
+    chmod 660 /sys/bus/i2c/devices/1-0012/batch
+    chmod 660 /sys/bus/i2c/devices/1-0012/enable
+    chmod 660 /sys/bus/i2c/devices/1-0012/aot_cali
+    chmod 660 /sys/module/aw9610x/parameters/sar_names
+    #Tab A7 T618 code for SR-AX6189A-01-60 by zhangziyi at 2021/12/23 end
+    #Tab A8 code for SR-AX6300-01-66 by mayuhang at 2021/9/8 start
+    chmod 660 /sys/class/sar/batch
+    chmod 660 /sys/class/sar/enable
+    chmod 660 /sys/class/sar/calibrate
+    #Tab A8 code for SR-AX6300-01-66 by mayuhang at 2021/9/8 end
+
+# Grip Sensor for unisoc sensor hub list
+    chown system radio /sys/class/sensors/grip_sensor/name
+    chown system radio /sys/class/sensors/grip_sensor/vendor
+    chown system radio /sys/class/sensors/grip_sensor/onoff
 
 on fs
     #mkdir /data/misc/bluedroid 0770 bluetooth net_bt_stack
@@ -212,6 +256,9 @@ on post-fs-data
     chmod 666 /sys/module/shub_core/parameters/pressure_firms
     chmod 666 /sys/module/shub_core/parameters/light_firms
     chmod 666 /sys/module/shub_core/parameters/prox_firms
+    # Tab A8 code for AX6300DEV-43 by hujincan at 2021/08/17 start
+    chmod 666 /sys/module/shub_core/parameters/sensor_name
+    # Tab A8 code for AX6300DEV-43 by hujincan at 2021/08/17 end
     chmod 666 /sys/module/firmware_class/parameters/path
     chmod 666 /sys/module/shub_core/parameters/sensor_fusion_mode
 
@@ -325,13 +372,14 @@ on property:ro.bootmode=cali
     # ToDo: insmod .../${ro.gpu.name}.ko
     insmod /mnt/product/socko/pvrsrvkm.ko
     insmod /mnt/product/socko/mali_gondul.ko
+    insmod /mnt/product/socko/mali_kbase.ko
 
     #gnss libgps
-    mkdir /data/vendor/gnss/ 0777 system system
-    mkdir /data/vendor/gnss/bin/ 0777 system system
-    mkdir /data/vendor/gnss/supl/ 0777 system system
-    mkdir /data/vendor/gnss/config/ 0777 system system
-    mkdir /data/vendor/gnss/lte/ 0777 system system
+    mkdir /data/vendor/gnss/ 0776 system system
+    mkdir /data/vendor/gnss/bin/ 0776 system system
+    mkdir /data/vendor/gnss/supl/ 0776 system system
+    mkdir /data/vendor/gnss/config/ 0776 system system
+    mkdir /data/vendor/gnss/lte/ 0776 system system
     chown system system /data/vendor/gnss/bin/gnssmodem.bin
     chown system system /data/vendor/gnss/config/config.xml
     chown system system /data/vendor/gnss/supl/supl.xml
@@ -394,13 +442,14 @@ on property:ro.bootmode=factorytest
     # ToDo: insmod .../${ro.gpu.name}.ko
     insmod /mnt/product/socko/pvrsrvkm.ko
     insmod /mnt/product/socko/mali_gondul.ko
+    insmod /mnt/product/socko/mali_kbase.ko
 
     #gnss
-    mkdir /data/vendor/gnss/ 0777 system system
-    mkdir /data/vendor/gnss/bin/ 0777 system system
-    mkdir /data/vendor/gnss/supl/ 0777 system system
-    mkdir /data/vendor/gnss/config/ 0777 system system
-    mkdir /data/vendor/gnss/lte/ 0777 system system
+    mkdir /data/vendor/gnss/ 0776 system system
+    mkdir /data/vendor/gnss/bin/ 0776 system system
+    mkdir /data/vendor/gnss/supl/ 0776 system system
+    mkdir /data/vendor/gnss/config/ 0776 system system
+    mkdir /data/vendor/gnss/lte/ 0776 system system
     chown system system /data/vendor/gnss/bin/gnssmodem.bin
     chown system system /data/vendor/gnss/config/config.xml
     chown system system /data/vendor/gnss/supl/supl.xml
@@ -443,3 +492,25 @@ on property:ro.bootmode=factorytest
 
 on property:ro.bootmode=factorytest && property:ro.debuggable=0
     setprop sys.usb.config vser
+
+on boot
+    write /sys/class/android_usb/android0/f_mass_storage/board_support_luns 1
+
+on early-fs
+    export EXTERNAL_STORAGE /storage/self/primary
+    symlink /mnt/user/0/emulated /mnt/runtime/default/self/emulated
+    symlink /system/system_ext /system_root
+on init
+    mkdir /mnt/vendor/productinfo 0771 system system
+    export EMULATED_STORAGE /storage/self/emulated
+    export PHYSICAL_STORAGE /storage/sdcard0
+    export USBDISK_STORAGE /storage/usbdisk
+    export ANDROID_ROOT /system_root
+    symlink /storage/self/primary /mnt/sdcard
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 system system
+    symlink /storage/usbdisk /mnt/usbdisk
+
+on post-fs
+    mkdir /mnt/vendor/productinfo 0771 system system
+    

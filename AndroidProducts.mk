@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_E7544.mk
+    $(LOCAL_DIR)/omni_E7544.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_E7544-user \
-    twrp_E7544-userdebug \
-    twrp_E7544-eng
+    omni_E7544-user \
+    omni_E7544-userdebug \
+    omni_E7544-eng

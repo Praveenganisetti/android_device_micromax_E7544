@@ -28,8 +28,8 @@ check_setpatch_override()
 # set to the below values respectively if these props are blank when
 # the script runs. These values should be updated to reflect the
 # TWRP defaults in your device's BoardConfig.mk
-osver_twrp="127"
-patchlevel_twrp="2127-12-31"
+osver_twrp="99.87.36"
+patchlevel_twrp="2099-12-31"
 
 # Set default log level
 DEFAULT_LOGLEVEL=1
@@ -244,7 +244,7 @@ temp_mount()
 			log_print 0 "Unable to create temporary $2 folder."
 			finish_error
 		fi
-		mount -t ext4 -o ro "$3" "$1"
+		mount -o ro "$3" "$1"
 		is_mounted=$(ls -A "$1" 2>/dev/null)
 		if [ -n "$is_mounted" ]; then
 			log_print 2 "$2 mounted at $1."

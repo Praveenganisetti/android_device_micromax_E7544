@@ -1,16 +1,79 @@
 #add for board init.rc for recovery mode
 import /init.recovery.common.rc
-import /init.recovery.qcom_decrypt.fbe.rc
+
+service mount-dynamic-rw /system/bin/mount-dynamic-rw.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+    
+service set_permissive /system/bin/set_permissive.sh
+    user root
+    group root
+    disabled
+    oneshot 
+    seclabel u:r:recovery:s0
+
+service postrecoveryboot /system/bin/postrecoveryboot.sh
+    user root
+    group root
+    disabled
+    oneshot 
+    seclabel u:r:recovery:s0
+
+service beforereboot /system/bin/beforereboot.sh
+    user root
+    group root
+    disabled
+    oneshot 
+    seclabel u:r:recovery:s0
+
+service prepdecrypt /system/bin/prepdecrypt.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+  
+
+# We need vold early for metadata encryption
+on early-fs
+    start vold
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    
+    export ANDROID_ROOT /system_root
+    
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    start set_permissive
+    start mount-dynamic-rw
+    start postrecoveryboot
+    start prepdecrypt
+    
+on post-fs
+    exec - system log -- /system/bin/recovery-refresh
 
+on post-fs-data
+    mkdir /data/misc/recovery 0770 system log
+    exec_background - system log -- /system/bin/recovery-persist
+
+
+on late-fs
+
+    # Wait for keymaster
+    exec_start wait_for_keymaster
+
+    # Mount RW partitions which need run fsck
+    mount_all /system/etc/recovery.fstab --late    
+    
 on boot
     start health-hal-2-1
-
-on post-fs
-    start boot-hal-1-1
+    setprop ro.boot.selinux permissive  
     
 on property:ro.crypto.state=unsupported
     stop sbinqseecomd
@@ -20,7 +83,6 @@ on property:ro.crypto.state=unsupported
     stop hwservicemanager
 
 on property:ro.crypto.state=unencrypted
-    start prepdecrypt
     stop sbinqseecomd
     stop keymaster-4-0
     stop gatekeeper-1-0
@@ -41,16 +103,3 @@ on property:ro.crypto.fs_crypto_blkdev=*
     stop servicemanager
     stop hwservicemanager    
   
-service prepdecrypt /system/bin/prepdecrypt.sh
-    user root
-    group root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
-  
-service mount-dynamic-rw /system/bin/mount-dynamic-rw.sh
-    user root
-    group root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
