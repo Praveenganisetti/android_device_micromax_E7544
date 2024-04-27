@@ -1,15 +1,6 @@
-<h1 align="center">
-  <br>
-  <a href="https://pitchblackrecovery.com"><img src="https://raw.githubusercontent.com/shovon668/xda-template/r3/pbrp3-banner-xda.png" alt="Welcome to PitchBlack Recovery Project 👋"></a>
-  <br>
-
-# 𝗠𝗶𝗰𝗿𝗼𝗺𝗮𝘅 𝗜𝗡_𝟮𝗯 (𝗘𝟳𝟱𝟰𝟰) 𝗗𝗲𝘃𝗶𝗰𝗲 𝗧𝗿𝗲𝗲
-  𝔽𝕠𝕣 ℙ𝕚𝕥𝕔𝕙𝔹𝕝𝕒𝕔𝕜 ℝ𝕖𝕔𝕠𝕧𝕖𝕣𝕪 𝔹𝕦𝕚𝕝𝕕
-
 <img src="https://logos-download.com/wp-content/uploads/2016/06/Micromax_logo_orange_background.png"/>
    
- 𝑻𝒉𝒆 𝑴𝒊𝒄𝒓𝒐𝒎𝒂𝒙 𝑰𝑵𝟐𝑩 (𝑴𝒐𝒅𝒆𝒍_𝑬𝟕𝟓𝟒𝟒) 𝒊𝒔 𝒂 𝒆𝒏𝒕𝒓𝒚-𝒍𝒆𝒗𝒆𝒍 𝒔𝒎𝒂𝒓𝒕𝒑𝒉𝒐𝒏𝒆 𝒇𝒓𝒐𝒎  𝑴𝒊𝒄𝒓𝒐𝒎𝒂𝒙 𝑰𝒏𝒇𝒐𝒓𝒎𝒂𝒕𝒊𝒄𝒔. 𝑴𝒊𝒄𝒓𝒐𝒎𝒂𝒙 𝒂𝒏𝒏𝒐𝒖𝒏𝒄𝒆𝒅  𝒕𝒉𝒊𝒔 𝒅𝒆𝒗𝒊𝒄𝒆 𝒐𝒏 𝑱𝒖𝒍𝒚 𝟑𝟎 𝟐𝟎𝟐𝟏   𝒂𝒏𝒅 𝒓𝒆𝒍𝒆𝒂𝒔𝒆𝒅 𝒊𝒏 𝑨𝒖𝒈𝒖𝒔𝒕 𝟎𝟔 𝟐𝟎𝟐𝟏
-
+The Micromax IN2B (Model E7544) is an entry-level smartphone from Micromax Informatics. Micromax announced this device on July 30, 2021, and released it in August 2021.
 
 ![](https://www.smartphonesbd.com/images/phones/micromax-in-2b.jpg)
 
