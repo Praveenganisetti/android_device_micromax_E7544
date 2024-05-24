@@ -140,9 +140,6 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 # System as root
 BOARD_SUPPRESS_SECURE_ERASE := true
 
-# Partitions (listed in the file) to be wiped under recovery.
-TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery/root/system/etc/recovery.wipe
-
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
 
