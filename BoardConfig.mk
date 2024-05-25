@@ -192,6 +192,9 @@ TW_NO_SCREEN_BLANK := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_NO_SCREEN_TIMEOUT := true
 
+# MTP
+TW_HAS_ := true
+TW_MTP_DEVICE := /dev/mtp_usb
 
 # resetprop and magiskboot
 TW_INCLUDE_RESETPROP := true
