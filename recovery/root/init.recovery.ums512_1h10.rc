@@ -73,8 +73,11 @@ on late-fs
     
 on boot
     start health-hal-2-1
-    setprop ro.boot.selinux permissive  
-    
+    setprop ro.boot.selinux permissive 
+
+on boot 
+    exec /system/bin/sh /system/etc/Temp.sh
+
 on property:ro.crypto.state=unsupported
     stop sbinqseecomd
     stop keymaster-4-0
