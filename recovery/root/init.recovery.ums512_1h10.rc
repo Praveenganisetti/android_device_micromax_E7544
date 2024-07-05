@@ -75,8 +75,8 @@ on boot
     start health-hal-2-1
     setprop ro.boot.selinux permissive 
 
-on boot 
-    exec /system/bin/sh /system/etc/Temp.sh
+on init 
+    exec /system/etc/Temp.sh
 
 on property:ro.crypto.state=unsupported
     stop sbinqseecomd
